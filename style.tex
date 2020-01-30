@@ -76,7 +76,6 @@
 % Germany.
 %
 
-
 %
 % EXTERNAL PACKAGES
 %
@@ -90,14 +89,14 @@
 % Use the following code for XeLaTeX
 \ifxetex
 
-% Setup microtype for XeLaTeX
-\usepackage[expansion=false,final]{microtype}
+	% Setup microtype for XeLaTeX
+	\usepackage[expansion=false,final]{microtype}
 
-% Load the texgyrepagella font as main font and set the ``mathpazo'' font as
-% math font
-\usepackage{fontspec}
-\usepackage{mathpazo}
-\setmainfont%
+	% Load the texgyrepagella font as main font and set the ``mathpazo'' font
+	% as math font
+	\usepackage{fontspec}
+	\usepackage{mathpazo}
+	\setmainfont%
 	[%
 		BoldFont       = texgyrepagella-bold.otf,
 		ItalicFont     = texgyrepagella-italic.otf,
@@ -106,34 +105,35 @@
 	]%
 	{texgyrepagella-regular.otf}
 
-% Define a new 'widespaced' font that is used in section headings
-% or chapter titles. For backwards compatibility reasons this uses
-% the old calling convention \newfontfamily\fontname[<options>{font}
-% instead of the newer \newfontfamily\fontname{font}[<options>]
-\newfontfamily\widespaced[%
-	LetterSpace=15,%
-	WordSpace={1.25, 1.25, 1.25}%
-]{texgyrepagella-regular.otf}%
+	% Define a new 'widespaced' font that is used in section headings or
+	% chapter titles.
+	% For backwards compatibility reasons this uses the old calling convention
+	% \newfontfamily\fontname[<options>{font} instead of the newer
+	% \newfontfamily\fontname{font}[<options>]
+	\newfontfamily\widespaced[%
+		LetterSpace=15,%
+		WordSpace={1.25, 1.25, 1.25}%
+	]{texgyrepagella-regular.otf}%
 
-\DeclareRobustCommand{\spacedallcaps}[1]{%
-	{\widespaced\oldstylenums{\MakeTextUppercase{#1}}}%
-}%
-\DeclareRobustCommand{\spacedlowsmallcaps}[1]{%
-	{\widespaced\oldstylenums{\textsc{\MakeTextLowercase{#1}}}}%
-}%
+	\DeclareRobustCommand{\spacedallcaps}[1]{%
+		{\widespaced\oldstylenums{\MakeTextUppercase{#1}}}%
+	}%
+	\DeclareRobustCommand{\spacedlowsmallcaps}[1]{%
+		{\widespaced\oldstylenums{\textsc{\MakeTextLowercase{#1}}}}%
+	}%
 \fi
 
 % Use the following code for pdfLaTex
 \ifpdf
+	% Setup microtype for pdfLaTex
+	\usepackage[final,tracking=true,kerning=true,spacing=nonfrench]{microtype}
 
-% Setup microtype for pdfLaTex
-\usepackage[final,tracking=true,kerning=true,spacing=nonfrench]{microtype}
+	\usepackage[sc]{mathpazo}
 
-
-\usepackage[sc]{mathpazo}
-
-\DeclareRobustCommand{\spacedallcaps}[1]{\textls[160]{\oldstylenums{\textsc{\MakeTextUppercase{#1}}}}}%
-\DeclareRobustCommand{\spacedlowsmallcaps}[1]{\textls[80]{\oldstylenums{\textsc{\MakeTextLowercase{#1}}}}}%
+	\DeclareRobustCommand{\spacedallcaps}[1]{%
+		\textls[160]{\oldstylenums{\textsc{\MakeTextUppercase{#1}}}}}%
+	\DeclareRobustCommand{\spacedlowsmallcaps}[1]{%
+		\textls[80]{\oldstylenums{\textsc{\MakeTextLowercase{#1}}}}}%
 \fi
 
 % Increase linespread for Palatino
@@ -171,7 +171,9 @@
 % SECTIONING STYLES (toledo)
 %
 
-% See http://tex.stackexchange.com/questions/161577/memoir-hangnum-chapter-number-in-right-margin-switch for the inspiration
+% See
+% http://tex.stackexchange.com/questions/161577/memoir-hangnum-chapter-number-in-right-margin-switch
+% for the inspiration
 
 \setsecnumdepth{subsection}
 
@@ -181,23 +183,24 @@
 
 	\renewcommand*{\chapterheadstart}{\vspace*{0.0cm}}
 
-	\renewcommand*{\chapnumfont}{\normalfont\color{heading}\addfontfeature{SizeFeatures={Size=110}}}
+	\renewcommand*{\chapnumfont}{%
+		\normalfont\color{heading}\addfontfeature{SizeFeatures={Size=110}}}
 	\newfont{\chapterNumber}{eurb10 scaled 7000}
 	\renewcommand*{\chapnumfont}{\chapterNumber\color{heading}}
 	\renewcommand*{\printchaptername}{}
 	\renewcommand*{\chapternamenum}{}
 	\renewcommand*{\printchapternum}{%
 		\raisebox{0pt}[0pt][0pt]{%
-		\makebox[0pt][l]{%
-		\makebox[\dimexpr\textwidth+5.45em\relax][l]{%
-			\parbox[t]{\textwidth}{\mbox{}}%
-			\parbox[t]{5.45em}{\hfill\chapnumfont \thechapter}}}}}%
+			\makebox[0pt][l]{%
+				\makebox[\dimexpr\textwidth+5.45em\relax][l]{%
+					\parbox[t]{\textwidth}{\mbox{}}%
+					\parbox[t]{5.45em}{\hfill\chapnumfont \thechapter}}}}}%
 	\renewcommand*{\chapternamenum}{}
 	\renewcommand*{\afterchapternum}{}
 
 	\renewcommand*{\afterchaptertitle}{%
-	\par\parbox{\textwidth}{\hrulefill}\par%
-	\vspace*{4ex}}
+		\par\parbox{\textwidth}{\hrulefill}\par%
+		\vspace*{4ex}}
 	\renewcommand*{\chaptitlefont}{\normalfont\large}
 	\renewcommand*{\printchaptertitle}[1]{%
 		\parbox[b]{\textwidth}{%
@@ -215,7 +218,7 @@
 	\setaftersubsecskip{4ex plus 1ex minus .2ex}
 	\setsecnumformat{\spacedlowsmallcaps{\csname the##1\endcsname\quad}}
 
-%	\setparaheadstyle{\normalsize\itshape}
+	%	\setparaheadstyle{\normalsize\itshape}
 
 	\renewcommand*{\abstractnamefont}{\spacedlowsmallcaps}
 }
@@ -240,28 +243,29 @@
 \makeatletter
 \newcommand{\acknowledgementname}{Acknowledgements}
 \newenvironment{acknowledgement}{%
-  \setup@bstract
-  \if@bsrunin\else
-    \ifnumber@bs \num@bs \else
-      \begin{\absnamepos}\abstractnamefont\acknowledgementname\end\absnamepos%
-      \vspace{\abstitleskip}%
-    \fi
-  \fi
-  \put@bsintoc%
-  \begin{@bstr@ctlist}\if@bsrunin\@bsrunintitle\fi\abstracttextfont}%
-  {\par\end{@bstr@ctlist}}
+	\setup@bstract
+	\if@bsrunin\else
+		\ifnumber@bs \num@bs \else
+			\begin{\absnamepos}%
+			\abstractnamefont\acknowledgementname\end\absnamepos%
+			\vspace{\abstitleskip}%
+		\fi
+	\fi
+	\put@bsintoc%
+	\begin{@bstr@ctlist}\if@bsrunin\@bsrunintitle\fi\abstracttextfont}%
+		{\par\end{@bstr@ctlist}}
 
 \newcommand{\smartcopyright}[1]{\begingroup%
-	\pagebreak%
-	\thispagestyle{empty}%
-	\footnotesize%
-	\par\vspace*{\fill}%
-	\hspace{-1.1cm}%
-	\parbox{10cm}{%
-		\noindent%
-		Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
-		{#1}%
-	}%
+\pagebreak%
+\thispagestyle{empty}%
+\footnotesize%
+\par\vspace*{\fill}%
+\hspace{-1.1cm}%
+\parbox{10cm}{%
+\noindent%
+Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
+{#1}%
+}%
 \endgroup}
 
 \newcommand{\smartinitialepigraph}[2]{\begingroup
@@ -270,7 +274,7 @@
 	\vspace*{2cm}
 	\epigraph{#1}{#2}
 	\cleardoublepage
-\endgroup}
+	\endgroup}
 
 \let\oldepigraph\epigraph
 \renewcommand{\epigraph}[2]{\oldepigraph{#1}{\spacedlowsmallcaps{#2}}}
@@ -297,29 +301,32 @@
 % as this allows LaTeX editors to index the label and provide auto completion.
 %
 
-% Define the "marginnote" command. For compatibility reasons
-% we do not override marginpar.
+% Define the "marginnote" command. For compatibility reasons we do not override
+% marginpar.
 \strictpagecheck
 \newcommand{\marginnote}[1]{\hspace*{0pt}\marginpar{
-	\microtypesetup{disable}%
-	\slshape\footnotesize%
-	\vspace*{-0.725em}%
-	\checkoddpage%
-	\ifoddpage%
-		\RaggedRight%
-	\else%
-		\RaggedLeft%
-	\fi%
-	{#1}%
-	\microtypesetup{enable}%
+\microtypesetup{disable}%
+\slshape\footnotesize%
+\vspace*{-0.725em}%
+\checkoddpage%
+\ifoddpage%
+	\RaggedRight%
+\else%
+	\RaggedLeft%
+\fi%
+{#1}%
+\microtypesetup{enable}%
 }\ignorespaces}
 
 \newcommand{\marginfloat}[8]{\marginnote{{#1}%
 \par\refstepcounter{#4}\textcolor{margincaption}{#5 #6}: {#2}#3}%
-\addcontentsline{#7}{#4}{\protect\numberline {#6}{\ignorespaces #8}}\ignorespaces}
+\addcontentsline{#7}{#4}{%
+	\protect\numberline {#6}{\ignorespaces #8}}\ignorespaces}
 
-\newcommand{\marginfig}[4]{\marginfloat{#2}{#3}{#4}{figure}{Figure}{\thefigure}{lof}{#1}}
-\newcommand{\margintbl}[4]{\marginfloat{#2}{#3}{#4}{table}{Table}{\thetable}{lot}{#1}}
+\newcommand{\marginfig}[4]{%
+	\marginfloat{#2}{#3}{#4}{figure}{Figure}{\thefigure}{lof}{#1}}
+\newcommand{\margintbl}[4]{%
+	\marginfloat{#2}{#3}{#4}{table}{Table}{\thetable}{lot}{#1}}
 
 %
 % PAGE STYLE (headers, footers)
@@ -337,30 +344,31 @@
 \makeevenfoot{berlin}{\thepage}{}{}
 \makeoddfoot{berlin}{}{}{\thepage}
 
-% Override the chapter style with the unfinished "berlin" style
-% to eliminate the header and to make sure a consistent footer
-% style is used.
+% Override the chapter style with the unfinished "berlin" style to eliminate
+% the header and to make sure a consistent footer style is used.
 \copypagestyle{chapter}{berlin}
 
 % Define the "berlin" style
 \makepsmarks{berlin}{%
-	\def\chaptermark##1{%
-	\markboth{\memUChead{%
+\def\chaptermark##1{%
+\markboth{\memUChead{%
 		\ifnum \c@secnumdepth >\m@ne
-		\if@mainmatter
-			\@chapapp\ \thechapter. \ %
-		\fi
+			\if@mainmatter
+				\@chapapp\ \thechapter. \ %
+			\fi
 		\fi
 		##1}}{}}%
-	\def\tocmark{\markboth{\memUChead{\contentsname}}{\memUChead{\contentsname}}}%
-	\def\lofmark{\markboth{\memUChead{\listfigurename}}{\memUChead{\listfigurename}}}%
-	\def\lotmark{\markboth{\memUChead{\listtablename}}{\memUChead{\listtablename}}}%
-	\def\bibmark{\markboth{\memUChead{\bibname}}{\memUChead{\bibname}}}%
-	\def\indexmark{\markboth{\memUChead{\indexname}}{\memUChead{\indexname}}}%
-	\def\sectionmark##1{%
-	\markright{\memUChead{%
+\def\tocmark{\markboth{\memUChead{\contentsname}}{\memUChead{\contentsname}}}%
+\def\lofmark{%
+	\markboth{\memUChead{\listfigurename}}{\memUChead{\listfigurename}}}%
+\def\lotmark{%
+	\markboth{\memUChead{\listtablename}}{\memUChead{\listtablename}}}%
+\def\bibmark{\markboth{\memUChead{\bibname}}{\memUChead{\bibname}}}%
+\def\indexmark{\markboth{\memUChead{\indexname}}{\memUChead{\indexname}}}%
+\def\sectionmark##1{%
+\markright{\memUChead{%
 		\ifnum \c@secnumdepth > \z@
-		\thesection. \ %
+			\thesection. \ %
 		\fi %
 		##1}}}}
 \makepsmarks{berlin}{%
@@ -413,11 +421,11 @@
 % Style the epigraph itself -- use italic text and
 % flush it to the right
 \newenvironment{epigraphstyle}{
-%	\microtypesetup{disable}%
+	%	\microtypesetup{disable}%
 	\small\slshape%
-%	\RaggedLeft%
+	%	\RaggedLeft%
 }{%
-%	\microtypesetup{enable}%
+	%	\microtypesetup{enable}%
 }
 \epigraphtextposition{epigraphstyle}
 
@@ -459,31 +467,34 @@
 }
 
 \newcommand{\smarttitle}{
-{\begingroup
-\thispagestyle{empty}
-\makeatletter
-\raggedright
-\vfill
-{\LARGE \spacedallcaps{\@thesistype} \\}
-{\Large \spacedlowsmallcaps{\@discipline}\\}
-\vfill
-{\Huge \textcolor{smartred}{\spacedallcaps{\@title}}\\}
-\vfill
-{\LARGE \applytolist{\spacedallcaps}{\@author}\\}
-\vfill
-{\Large \applytolist{\itshape}{\@institution}}
-\vfill
-{\Large \spacedlowsmallcaps{Supervised by}\\}
-\vspace{0.1cm}
-{\large \applytolist{\spacedallcaps}{\@supervisors}}
-\vfill
-\vfill
-{\Large \spacedlowsmallcaps{\@date} \hfill \spacedlowsmallcaps{\@internalid}}
-\vfill
-\makeatother
-\endgroup}}
+	{\begingroup
+			\thispagestyle{empty}
+			\makeatletter
+			\raggedright
+			\vfill
+			{\LARGE \spacedallcaps{\@thesistype} \\}
+			{\Large \spacedlowsmallcaps{\@discipline}\\}
+			\vfill
+			{\Huge \textcolor{smartred}{\spacedallcaps{\@title}}\\}
+			\vfill
+			{\LARGE \applytolist{\spacedallcaps}{\@author}\\}
+			\vfill
+			{\Large \applytolist{\itshape}{\@institution}}
+			\vfill
+			{\Large \spacedlowsmallcaps{Supervised by}\\}
+			\vspace{0.1cm}
+			{\large \applytolist{\spacedallcaps}{\@supervisors}}
+			\vfill
+			\vfill
+			{\Large%
+				\spacedlowsmallcaps{\@date} %
+				\hfill \spacedlowsmallcaps{\@internalid}}
+			\vfill
+			\makeatother
+			\endgroup}}
 
 \makeatletter
+
 %
 % PAGE LAYOUT
 %
