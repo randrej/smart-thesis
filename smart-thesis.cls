@@ -1,3 +1,6 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{smart-thesis}[2020-01-31 Typographically sound thesis/book class]
+
 %
 % Smart Thesis LaTeX template
 %
@@ -77,10 +80,32 @@
 %
 
 %
+% CLASS INHERITANCE
+%
+
+\LoadClass{memoir}
+
+%
 % EXTERNAL PACKAGES
 %
 \usepackage[usenames,dvipsnames,svgnames]{xcolor}
 \usepackage{ragged2e} % for marginnote
+
+%
+% CLASS OPTIONS
+%
+
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=st, prefix=st@}
+
+% options
+
+% Pass unrecognized options to memoir
+\DeclareDefaultOption{
+  \PassOptionsToClass{\CurrentOption}{memoir}
+}
+
+\ProcessKeyvalOptions{st}
 
 %
 % FONT DEFINITIONS

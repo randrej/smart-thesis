@@ -520,6 +520,8 @@ WipeArg
     \citetext:{} \citeyear:*{} \citeyearpar:{}
     # tipa which uses "
     \textipa:{}
+    # Package and class
+    \ProvidesClass:{}[]
 }
 
 #####################################################################
