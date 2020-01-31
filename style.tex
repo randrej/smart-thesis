@@ -124,7 +124,7 @@
 \fi
 
 % Use the following code for pdfLaTex
-\ifpdf
+\ifpdf%
 	% Setup microtype for pdfLaTex
 	\usepackage[final,tracking=true,kerning=true,spacing=nonfrench]{microtype}
 
@@ -194,7 +194,7 @@
 			\makebox[0pt][l]{%
 				\makebox[\dimexpr\textwidth+5.45em\relax][l]{%
 					\parbox[t]{\textwidth}{\mbox{}}%
-					\parbox[t]{5.45em}{\hfill\chapnumfont \thechapter}}}}}%
+					\parbox[t]{5.45em}{\hfill\chapnumfont\thechapter}}}}}%
 	\renewcommand*{\chapternamenum}{}
 	\renewcommand*{\afterchapternum}{}
 
@@ -211,11 +211,11 @@
 	\setsecheadstyle{\spacedlowsmallcaps}
 	\setsecindent{-3.5ex}
 	\setbeforesecskip{-4ex plus -1ex minus -.2ex}
-	\setaftersecskip{4ex plus 1ex minus .2ex}
+	\setaftersecskip{4ex plus 1ex minus 0.2ex}
 
-	\setsubsecheadstyle{\itshape}
-	\setbeforesubsecskip{-4ex plus -1ex minus -.2ex}
-	\setaftersubsecskip{4ex plus 1ex minus .2ex}
+	\setsubsecheadstyle{\itshape} % chktex 6
+	\setbeforesubsecskip{-4ex plus -1ex minus -0.2ex}
+	\setaftersubsecskip{4ex plus 1ex minus 0.2ex}
 	\setsecnumformat{\spacedlowsmallcaps{\csname the##1\endcsname\quad}}
 
 	%	\setparaheadstyle{\normalsize\itshape}
@@ -231,7 +231,7 @@
 %
 
 \captionstyle{\small}
-\captionnamefont{\slshape\color{caption}}
+\captionnamefont{\slshape\color{caption}} % chktex 6
 
 \newsubfloat{figure}% Create subfloat in figure environment
 \newsubfloat{table}% Create subfloat in table environment
@@ -269,14 +269,14 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 \endgroup}
 
 \newcommand{\smartinitialepigraph}[2]{\begingroup
-	\cleardoublepage
+	\cleardoublepage%
 	\thispagestyle{empty}
 	\vspace*{2cm}
 	\epigraph{#1}{#2}
-	\cleardoublepage
+	\cleardoublepage%
 	\endgroup}
 
-\let\oldepigraph\epigraph
+\let\oldepigraph\epigraph%
 \renewcommand{\epigraph}[2]{\oldepigraph{#1}{\spacedlowsmallcaps{#2}}}
 
 \makeatother
@@ -303,8 +303,10 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 
 % Define the "marginnote" command. For compatibility reasons we do not override
 % marginpar.
-\strictpagecheck
-\newcommand{\marginnote}[1]{\hspace*{0pt}\marginpar{
+\strictpagecheck%
+\newcommand{\marginnote}[1]{%
+\hspace*{0pt}%
+\marginpar{%
 \microtypesetup{disable}%
 \slshape\footnotesize%
 \vspace*{-0.725em}%
@@ -316,7 +318,9 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 \fi%
 {#1}%
 \microtypesetup{enable}%
-}\ignorespaces}
+}%
+\ignorespaces%
+}
 
 \newcommand{\marginfloat}[8]{\marginnote{{#1}%
 \par\refstepcounter{#4}\textcolor{margincaption}{#5 #6}: {#2}#3}%
@@ -335,7 +339,7 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 \makeatletter
 
 % Deactivate capitalization of headers.
-\nouppercaseheads
+\nouppercaseheads%
 
 % Define the new "berlin" style.
 \makepagestyle{berlin}
@@ -353,7 +357,7 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 \def\chaptermark##1{%
 \markboth{\memUChead{%
 		\ifnum \c@secnumdepth >\m@ne
-			\if@mainmatter
+			\if@mainmatter%
 				\@chapapp\ \thechapter. \ %
 			\fi
 		\fi
@@ -420,7 +424,7 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 
 % Style the epigraph itself -- use italic text and
 % flush it to the right
-\newenvironment{epigraphstyle}{
+\newenvironment{epigraphstyle}{%
 	%	\microtypesetup{disable}%
 	\small\slshape%
 	%	\RaggedLeft%
@@ -466,8 +470,8 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 	\@for \el:=#3\do{\nextitem{#2{\el}}}%
 }
 
-\newcommand{\smarttitle}{
-	{\begingroup
+\newcommand{\smarttitle}{{%
+			\begingroup
 			\thispagestyle{empty}
 			\makeatletter
 			\raggedright
@@ -479,7 +483,7 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 			\vfill
 			{\LARGE \applytolist{\spacedallcaps}{\@author}\\}
 			\vfill
-			{\Large \applytolist{\itshape}{\@institution}}
+			{\Large \applytolist{\itshape}{\@institution}} % chktex 6
 			\vfill
 			{\Large \spacedlowsmallcaps{Supervised by}\\}
 			\vspace{0.1cm}
@@ -504,4 +508,4 @@ Copyright \textcopyright\ \the\year\ \applytolist[, ]{}{\@author}\\[0.5cm]%
 \setlrmargins{3.141592653589793cm}{*}{*}
 \setulmargins{*}{*}{*}
 \setmarginnotes{0.8cm}{3.5cm}{1cm}
-\checkandfixthelayout
+\checkandfixthelayout%
